@@ -1,5 +1,7 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, DELETE');
+header("Access-Control-Allow-Headers: X-Requested-With");
 include "../services/productServices.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = createProduct($name, $price, $categoryCode, $code, $amount);
 
     echo $data;
-
 };
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -28,7 +29,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
     echo $data;
 };
-
-
-
-echo "<br>Produtos<br>";

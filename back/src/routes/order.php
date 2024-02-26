@@ -1,29 +1,32 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: X-Requested-With");
 include "../services/orderServices.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "Criar order <br/>";
-
     $total = filter_var($_POST["total"], FILTER_SANITIZE_NUMBER_FLOAT);
     $tax = filter_var($_POST["tax"], FILTER_SANITIZE_NUMBER_FLOAT);
     $code = filter_var($_POST["code"], FILTER_SANITIZE_NUMBER_INT);
 
     $result = createOrder($total, $tax, $code);
-    echo $result;
+    echo json_encode($result);
 };
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $data = readAllOrders();
-    echo json_encode($data);
+    if (empty($_GET['code'])) {
+        $data = readAllOrders();
+        echo json_encode($data);
+        return;
+    };
+
+    $search = filter_var($_GET['code'], FILTER_SANITIZE_NUMBER_INT);
+    $result = readSpecificOrder($search);
+    echo json_encode($result);
 }
 
-if($_SERVER['REQUEST_METHOD'] == "DELETE") {
+if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
     $toBeDeleted = $_GET['id'];
     $data = deleteOrder($toBeDeleted);
     echo "Apagado com sucesso, {$data}";
 };
-
-
-
-echo "<br>Categorias<br>";

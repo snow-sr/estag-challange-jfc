@@ -4,7 +4,7 @@ include "../index.php";
 
 
 function createOrderItems(String $items) {
-    // items will be the array of object
+    // @param Items items will be the array of object
     $decoded = json_decode($items, true);
 
     foreach ($decoded as $item) {

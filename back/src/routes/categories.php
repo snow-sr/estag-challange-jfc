@@ -1,5 +1,7 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, DELETE');
+header("Access-Control-Allow-Headers: X-Requested-With");
 include "../services/categoriesServices.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,12 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo json_encode($data);
 }
 
-if($_SERVER['REQUEST_METHOD'] == "DELETE") {
+if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
     $toBeDeleted = $_GET['id'];
     $data = deleteCategory($toBeDeleted);
     echo "Apagado com sucesso, {$data}";
 };
-
-
-
-echo "<br>Categorias<br>";
