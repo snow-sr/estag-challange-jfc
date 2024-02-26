@@ -20,4 +20,12 @@ function readAllProducts(){
     $readAllProducts = myPDO->query("SELECT * FROM products");
     $data = $readAllProducts->fetchAll(PDO::FETCH_ASSOC);
     return $data;
+};
+
+function updateProductStock(Int $newStock, Int $codeProduct) {
+    $newAmmount = 10; //fazer calculo dps
+    $queryStock = myPDO->query("UPDATE product SET amount = {$newAmmount} WHERE code={$codeProduct}");
+    $queryStock->execute();
+
+    return "Updated stock";
 }
