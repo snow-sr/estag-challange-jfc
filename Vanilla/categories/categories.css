@@ -1,0 +1,33 @@
+.category_submit_button {
+  padding: 0px, 10px, 10px, 10px;
+}
+
+table {
+  border: 1px dotted;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  gap: 20px;
+}
+
+input[type="text"] {
+  width: 90%;
+  margin-bottom: 10px;
+}
+input[type="number"] {
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+select {
+  margin-bottom: 10px;
+}

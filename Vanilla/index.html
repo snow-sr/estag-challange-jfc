@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shop.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories/categories.html">Categorias</a></li>
+            <li><a href="products/products.html">Produtos</a></li>
+            <li><a href="history/history.html">Histórico</a></li>
+        </ul>
+    </header>
+    <main>
+        <!--Selecionar produtos e add carrinho-->
+        <div class="product_select">
+            <h1 class="title">Selecionar produtos</h1>
+            <form action="" id="form_add">
+                <select id="select_item" class="select" required>
+                </select>
+                <label for="qtd">Quantidade:</label>
+                <input type="number" value="1" min="1" max="99" name="qtd" id="item_quantity">
+                <label for="available">Disponíveis:</label>
+                <input type="number" id="available" disabled>
+                <div class="info_product">
+                    <p>Produto: <span id="product_name"></span></p>
+                    <p>Valor Total: <span id="product_total_price"></span></p>
+                    <p>Valor sem imposto: <span id="product_without_tax"></span></p>
+                    <p>Valor unitário (Com impostos): <span id="product_unit_price"></span></p>
+                    <p>Imposto sobre o produto: <span id="product_tax"></span></p>
+                </div>
+                <div>
+                    <input type="submit" value="Adicionar produto" id="addToCart">
+                </div>
+            </form>
+        </div>
+        <!--Carrinho-->
+        <div class="shopping_cart">
+            <h1 class="title">Carrinho</h1>
+            <div class="list_products">
+                <!--Lista produtos-->
+                <ul id="cart_list">
+                </ul>
+
+
+            </div>
+            <div class="final_info">
+                <p>Valor total: <span id="cart_total"></span></p>
+                <p>Valor dos impostos: <span id="cart_total_tax"></span></p>
+            </div>
+            <div>
+                <input type="submit" value="Conclua aqui sua compra" onClick="buy()">
+                <button id="cancel_shopping" onclick="clearCart()">Cancelar compra</button>
+            </div>
+        </div>
+        <!--Finalizar compra-->
+
+    </main>
+    <script src=" index.js"></script>
+</body>
+
+</html>

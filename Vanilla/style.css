@@ -1,0 +1,39 @@
+header {
+  background-color: white;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+header * {
+  display: inline;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #b33c86;
+}
+
+header li {
+  margin: 20px;
+}
+
+body {
+  height: 125vh;
+  padding: 5vh;
+  color: white;
+  background-color: #121210;
+  margin-top: 100px;
+  font-family: inter;
+}
+
+.title {
+  text-align: center;
+}

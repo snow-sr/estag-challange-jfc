@@ -1,0 +1,28 @@
+table {
+  border: 1px dotted;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  text-align: center;
+}
+main {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  gap: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+input[type="number"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+select {
+  margin-bottom: 10px;
+}

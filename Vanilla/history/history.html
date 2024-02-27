@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="history.css">
+    <title>Histórico</title>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../categories/categories.html">Categorias</a></li>
+            <li><a href="../products/products.html">Produtos</a></li>
+            <li><a href="history.html">Histórico</a></li>
+        </ul>
+    </header>
+    <main>
+        <div id="modalInfo" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content" id="modalContent">
+                <table id="tableProductsHistory" style="{border: 1px dotted;}">
+                    <tr ">
+                        <th style=" {border: 1px dotted;}">
+                        Produto
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+                        <th>
+                            Valor do(s) iten(s)
+                        </th>
+                        <th>
+                            Valor dos impostos
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <table id="history_table">
+            <tr>
+                <th>id</th>
+                <th>Impostos</th>
+                <th>Total pós-impostos</th>
+                <th>Nome comprador</th>
+                <th>Forma pagamento</th>
+                <th>Ações</th>
+            </tr>
+        </table>
+    </main>
+    <script src="history.js"></script>
+</body>
+
+</html>

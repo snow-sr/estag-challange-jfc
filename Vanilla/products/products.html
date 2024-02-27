@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="products.css">
+    <title>Produtos</title>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../categories/categories.html">Categorias</a></li>
+            <li><a href="products.html">Produtos</a></li>
+            <li><a href="../history/history.html">Histórico</a></li>
+        </ul>
+    </header>
+    <main>
+        <div>
+            <form id="form_product">
+                <div>
+                    <label for="product_name">Nome do produto:</label>
+                    <input type="text" name="name" id="product_name" required>
+                </div>
+                <div>
+                    <label for="product_quantity">Quantidade em estoque:</label>
+                    <input type="number" name="amount" id="product_quantity" min="0" required>
+                </div>
+                <div>
+                    <label for="product_price">Preço unitário do produto:</label>
+                    <input type="number" name="price" id="product_price" step="0.01" min="0.1" required>
+                </div>
+                <div>
+                    <label for="product_category">Categoria do produto:</label>
+                    <select name="category_code" id="product_category" required>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" value="Adicionar produto">
+                </div>
+            </form>
+        </div>
+        <div>
+            <table id="product_table">
+                <tr>
+                    <th>id</th>
+                    <th>Produto</th>
+                    <th>Qtd. em estoque</th>
+                    <th>Preço unid.</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <script src="products.js"></script>
+</body>
+
+</html>
