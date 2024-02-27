@@ -1,8 +1,5 @@
 --Every command here will be executed when the container is created
 
-INSERT INTO mytable (DESCRIPTION) VALUES ('TESTE');
-INSERT INTO mytable (DESCRIPTION) VALUES ('TESTE2');
-
 CREATE TABLE CATEGORIES (
     CODE INTEGER PRIMARY KEY,
     NAME VARCHAR(255),

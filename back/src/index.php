@@ -1,7 +1,5 @@
 
 <?php
-
-
 $host = "pgsql_desafio";
 $db = "applicationphp";
 $user = "root";

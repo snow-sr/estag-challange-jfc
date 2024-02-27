@@ -5,8 +5,8 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 include "../services/orderServices.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $total = filter_var($_POST["total"], FILTER_SANITIZE_NUMBER_FLOAT);
-    $tax = filter_var($_POST["tax"], FILTER_SANITIZE_NUMBER_FLOAT);
+    $total = $_POST["total"];
+    $tax = $_POST["tax"];
     $code = filter_var($_POST["code"], FILTER_SANITIZE_NUMBER_INT);
 
     $result = createOrder($total, $tax, $code);

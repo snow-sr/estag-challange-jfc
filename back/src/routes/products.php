@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $name = filter_var($_POST["name"], FILTER_SANITIZE_SPECIAL_CHARS);
     $categoryCode = filter_var($_POST["category_code"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $price = filter_var($_POST["price"], FILTER_SANITIZE_NUMBER_FLOAT);
+    $price = $_POST["price"];
     $code = filter_var($_POST["code"], FILTER_SANITIZE_NUMBER_INT);
     $amount = filter_var($_POST["amount"], FILTER_SANITIZE_NUMBER_INT);
 

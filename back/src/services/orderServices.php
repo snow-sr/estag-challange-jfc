@@ -7,7 +7,7 @@ function createOrder(Float $total, Float $tax, Int $code)
     $createQuery = myPDO->prepare("insert into orders (total, tax, code) values ('{$total}',{$tax}, {$code})");
     $createQuery->execute();
 
-    return "created with success";
+    return json_encode(array("msg" => "created with success", "status" => "ok", "code" => $code));
 };
 
 function deleteOrder(Int $id)

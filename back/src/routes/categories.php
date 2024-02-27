@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Criar categoria  <br/>";
 
     $name = filter_var($_POST["name"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $tax = filter_var($_POST["tax"], FILTER_SANITIZE_NUMBER_FLOAT);
+    $tax = $_POST["tax"];
     $code = filter_var($_POST["code"], FILTER_SANITIZE_NUMBER_INT);
 
     $result = createCategory($name, $tax, $code);
