@@ -2,7 +2,10 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, DELETE');
 header("Access-Control-Allow-Headers: X-Requested-With");
-include "../services/productServices.php";
+require_once "../index.php";
+require_once "../services/productServices.php";
+
+$db = DatabaseConnection::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Criar Produto  <br/>";
@@ -13,19 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code = filter_var($_POST["code"], FILTER_SANITIZE_NUMBER_INT);
     $amount = filter_var($_POST["amount"], FILTER_SANITIZE_NUMBER_INT);
 
-    $data = createProduct($name, $price, $categoryCode, $code, $amount);
+    $data = Product::createProduct($db, $name, $price, $categoryCode, $code, $amount);
 
     echo $data;
 };
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $data = array_values(readAllProducts());
+    $data = array_values(Product::readAllProducts($db));
     echo json_encode($data);
 };
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $toBeDeleted = $_GET['id'];
-    $data = deleteProduct($toBeDeleted);
+    $data = Product::deleteProduct($db, $toBeDeleted);
 
     echo $data;
 };

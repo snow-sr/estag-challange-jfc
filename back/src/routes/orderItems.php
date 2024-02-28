@@ -2,7 +2,11 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
-include "../services/orderItemServices.php";
+
+require_once "../services/orderItemServices.php";
+require_once "../index.php";
+
+$db = DatabaseConnection::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Criar order item <br/>";
@@ -10,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $items = $_POST['items'];
     print_r($items);
 
-    $result = createOrderItems($items);
+    $OrderItem = new OrderItem();
+    $result = $OrderItem->createOrderItem($db, $items);
 
     echo $result;
 };
@@ -24,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     };
 
     $orderCode = $_GET['order_code'];
-    $result = readAllOrderItemsFromOrder($orderCode);
+    $result = OrderItem::readAllOrderItemsFromOrder($db, $orderCode);
 
     print_r($result);
 }
@@ -34,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
 
     $toBeDeleted = $_GET['id'];
 
-    $result = deleteOrderItem($toBeDeleted);
+    $result = OrderItem::deleteOrderItem($db, $toBeDeleted);
 
     return $result;
 }
