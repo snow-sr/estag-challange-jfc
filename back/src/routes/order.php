@@ -12,8 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total = $_POST["total"];
     $tax = $_POST["tax"];
     $code = filter_var($_POST["code"], FILTER_SANITIZE_NUMBER_INT);
+    $userCode = filter_var($_POST["user_code"], FILTER_SANITIZE_NUMBER_INT);
 
-    $result = Order::createOrder($db, $total, $tax, $code);
+    $result = Order::createOrder($db, $total, $tax, $code, $userCode);
     echo json_encode($result);
 };
 

@@ -51,6 +51,9 @@ formCategory.addEventListener("submit", async (e) => {
 });
 
 async function init() {
+  if (!localStorage.getItem("login")) {
+    window.location.href = "http://localhost:5500/Vanilla/login/login.html";
+  }
   let request = fetch("http://localhost/routes/categories.php").then((data) => {
     return data.json();
   });
@@ -65,3 +68,12 @@ async function init() {
 }
 
 init();
+
+function handleShortcut(event) {
+  if (event.key === ";") {
+    event.preventDefault();
+    localStorage.removeItem("login");
+    init();
+  }
+}
+document.addEventListener("keydown", handleShortcut);

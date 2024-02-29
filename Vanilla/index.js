@@ -88,10 +88,11 @@ const renderUtils = {
 const apiUtils = {
   createOrder: async (total, tax) => {
     let body = new FormData();
-
+    let userId = JSON.parse(localStorage.getItem("login"));
     body.append("tax", tax);
     body.append("total", total);
     body.append("code", uid());
+    body.append("user_code", userId.code);
 
     let request = fetch("http://localhost/routes/order.php", {
       method: "post",
@@ -212,6 +213,9 @@ form.addEventListener("submit", async (e) => {
 });
 
 async function init() {
+  if (!localStorage.getItem("login")) {
+    window.location.href = "http://localhost:5500/Vanilla/login/login.html";
+  }
   renderUtils.clear();
   let requestProducts = fetch("http://localhost/routes/products.php").then(
     (data) => {
@@ -285,3 +289,12 @@ function debug() {
   console.table([cartPrice, cartTaxes]);
   console.log(JSON.stringify(newList));
 }
+
+function handleShortcut(event) {
+  if (event.key === ";") {
+    event.preventDefault();
+    localStorage.removeItem("login");
+    init();
+  }
+}
+document.addEventListener("keydown", handleShortcut);

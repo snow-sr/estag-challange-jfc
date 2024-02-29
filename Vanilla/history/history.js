@@ -3,7 +3,7 @@ const modal = document.getElementById("modalInfo");
 const span = document.getElementsByClassName("close")[0];
 const modalTable = document.getElementById("tableProductsHistory");
 
-function createRow(info) {
+function createRow(info, user) {
   historyTable.innerHTML += `
   <tr>
      <td>
@@ -16,10 +16,7 @@ function createRow(info) {
      R$${info.total}
      </td>
      <td>
-     Não informado
-     </td>
-     <td>
-     Não informado
+     ${user.username}
      </td>
      <td>
      <button onclick="viewInfo(${info.code})">Clique aqui para ver os produtos</button>
@@ -44,9 +41,6 @@ function clear() {
        Nome comprador
        </th>
        <th>
-       Forma pagamento
-       </th>
-       <th>
        Ações
        </th>
     </tr>
@@ -54,18 +48,25 @@ function clear() {
 }
 
 async function init() {
+  if (!localStorage.getItem("login")) {
+    window.location.href = "http://localhost:5500/Vanilla/login/login.html";
+  }
   let request = fetch("http://localhost/routes/order.php").then((data) => {
     return data.json();
   });
   console.log(await request);
 
   let historyData = await request;
-  // if (!historyData) {
-  //   alert("Não há compras feitas.");
-  // }
+
+  if (!historyData) {
+    alert("Não há compras feitas.");
+  }
+  const userId = JSON.parse(localStorage.getItem("login"));
 
   await historyData.forEach((element) => {
-    createRow(element);
+    if (element.user_code == userId.code) {
+      createRow(element, userId);
+    }
   });
 }
 
@@ -127,3 +128,12 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+function handleShortcut(event) {
+  if (event.key === ";") {
+    event.preventDefault();
+    localStorage.removeItem("login");
+    init();
+  }
+}
+document.addEventListener("keydown", handleShortcut);

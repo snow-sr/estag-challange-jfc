@@ -4,9 +4,9 @@ require_once '../index.php';
 
 class Order
 {
-    public static function createOrder(PDO $db, Float $total, Float $tax, Int $code)
+    public static function createOrder(PDO $db, Float $total, Float $tax, Int $code, Int $userCode)
     {
-        $createQuery = $db->prepare("insert into orders (total, tax, code) values ('{$total}',{$tax}, {$code})");
+        $createQuery = $db->prepare("insert into orders (total, tax, code, user_code) values ('{$total}',{$tax}, {$code}, {$userCode})");
         $createQuery->execute();
 
         return json_encode(array("msg" => "created with success", "status" => "ok", "code" => $code));
