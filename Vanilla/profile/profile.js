@@ -6,7 +6,7 @@ const btn = document.getElementById("logout");
 
 async function init() {
   if (!localStorage.getItem("login")) {
-    window.location.href = "http://localhost:5500/Vanilla/login/login.html";
+    window.location.pathname = "/Vanilla/login/login.html";
   }
 }
 

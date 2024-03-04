@@ -49,7 +49,7 @@ function clear() {
 
 async function init() {
   if (!localStorage.getItem("login")) {
-    window.location.href = "http://localhost:5500/Vanilla/login/login.html";
+    window.location.pathname = "/Vanilla/login/login.html";
   }
   let request = fetch("http://localhost/routes/order.php").then((data) => {
     return data.json();
