@@ -214,7 +214,8 @@ form.addEventListener("submit", async (e) => {
 
 async function init() {
   if (!localStorage.getItem("login")) {
-    window.location.pathname = "/Vanilla/login/login.html";
+    window.location.pathname =
+      "Ubuntu/root/estag-challange/Vanilla/login/login.html";
   }
   renderUtils.clear();
   let requestProducts = fetch("http://localhost/routes/products.php").then(

@@ -4,7 +4,7 @@ const registerForm = document.getElementById("registerForm");
 const userUtils = {
   createSession: (key) => {
     localStorage.setItem("login", key);
-    window.location.href = "http://localhost:5500/Vanilla/";
+    window.location.pathname = "Ubuntu/root/estag-challange/Vanilla/index.html";
   },
   verifyIfLogged: () => {
     if (localStorage.getItem("login")) {
