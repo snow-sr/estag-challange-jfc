@@ -59,7 +59,7 @@ async function register() {
 
 function init() {
   if (userUtils.verifyIfLogged()) {
-    window.location.href = "http://localhost:5500/Vanilla/";
+    window.location.href = "../index.html";
   }
 }
 
