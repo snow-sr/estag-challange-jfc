@@ -52,8 +52,7 @@ formCategory.addEventListener("submit", async (e) => {
 
 async function init() {
   if (!localStorage.getItem("login")) {
-    window.location.pathname =
-      "Ubuntu/root/estag-challange/Vanilla/login/login.html";
+    window.location.href = "../login/login.html";
   }
   let request = fetch("http://localhost/routes/categories.php").then((data) => {
     return data.json();

@@ -6,8 +6,11 @@ const btn = document.getElementById("logout");
 
 async function init() {
   if (!localStorage.getItem("login")) {
-    window.location.pathname =
-      "Ubuntu/root/estag-challange/Vanilla/login/login.html";
+    let newLink = window.location.pathname;
+    newLink = newLink.split("/");
+    newLink = newLink.pop();
+    newLink[newLink.length - 1] = "login/login.html";
+    window.location.pathname = newLink.join("/");
   }
 }
 
