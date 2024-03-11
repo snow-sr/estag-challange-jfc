@@ -5,6 +5,8 @@ import History from './routes/History/History.jsx'
 import Categories from './routes/Categories/Categories.jsx'
 import Products from './routes/Products/Products.jsx'
 import Auth from './routes/Auth/Auth.jsx'
+import AuthProvider from './contexts/AuthProvider.jsx'
+import PrivateRoute from './routes/config/PrivateRoutes.jsx'
 
 
 import {
@@ -29,23 +31,27 @@ export const userState = atom({
 
 import './index.css'
 
+function HistoryWithProtection() {
+  return (<PrivateRoute><History /></PrivateRoute>)
+}
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <PrivateRoute><App /></PrivateRoute>
   },
   {
     path: "/history",
-    element: <History />
+    element: <HistoryWithProtection />
   },
   {
     path: "/categories",
-    element: <Categories />
+    element: <PrivateRoute><Categories /></PrivateRoute>
   },
   {
     path: "/products",
-    element: <Products />
+    element: <PrivateRoute><Products /></PrivateRoute>
   },
   {
     path: "/login",
@@ -55,8 +61,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <AuthProvider>
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </AuthProvider>
   </React.StrictMode>,
 )

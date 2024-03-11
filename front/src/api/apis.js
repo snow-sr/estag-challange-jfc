@@ -69,7 +69,7 @@ export class OrderApi {
 
   async createOrder(order, cart) {
     console.log(order);
-    order.append("user_code", 1);
+
     let request = await axios.post(this.url, order).then((res) => {
       console.log(res);
       return res.data;

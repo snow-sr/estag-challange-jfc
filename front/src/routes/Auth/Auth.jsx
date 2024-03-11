@@ -4,6 +4,7 @@ import { Login } from '../../api/apis';
 import { useNavigate } from "react-router-dom";
 import { userState } from "../../main.jsx"
 import { useRecoilState } from 'recoil';
+import { useAuth } from "../../contexts/AuthProvider.jsx"
 
 const loginApi = new Login()
 
@@ -14,6 +15,9 @@ function Auth() {
     const [error, setError] = useState("")
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const auth = useAuth()
+
+    if (auth.token) { navigate("/") }
 
     const submitLogin = async (user) => {
         let request = await loginApi.login(user);
@@ -22,6 +26,7 @@ function Auth() {
             if (user.remember) {
                 console.log("sim");
                 setLogged(request.data.profile)
+                auth.receiveLogin(await request.data)
                 navigate('/');
             } else {
                 setLogged(request.data.profile)

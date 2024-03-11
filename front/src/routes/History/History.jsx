@@ -11,7 +11,8 @@ import { Button, Modal } from 'flowbite-react';
 import {
     OrderApi
 } from "../../api/apis.js"
-import axios from 'axios';
+import { useAuth } from "../../contexts/AuthProvider.jsx"
+
 import { uid } from 'uid';
 
 const queryClient = new QueryClient();
@@ -31,12 +32,14 @@ function Main() {
     const [orders, setOrders] = useState([])
     const [infoId, setInfoId] = useState()
     const [info, setInfo] = useState()
+    const auth = useAuth();
 
     const { isPending: isPendingOrders, error: errorOrders } = useQuery({
         queryKey: ['ordersData'],
         queryFn: async () => apiOrders.getAllOrders().then((res) => {
-            setOrders(res)
-            return res
+            let filtered = res.filter((item) => item.user_code == auth.user.code)
+            setOrders(filtered)
+            return filtered
         })
     })
 
@@ -62,73 +65,6 @@ function Main() {
         <>
             <Header />
             <main className='h-screen flex justify-center items-center'>
-                {/* {details ?
-                    <div>
-                        <div id="default-modal" data-modal-toggle="static-modal" data-modal-placement="top-center" tabIndex="-1" aria-hidden="true" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div className="relative p-4 w-full max-w-2xl max-h-full">
-                                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Details
-                                        </h3>
-                                        <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal" onClick={() => {
-                                            setOpen(!details)
-                                        }}>
-                                            <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                            </svg>
-                                            <span className="sr-only">Close modal</span>
-                                        </button>
-                                    </div>
-                                    <div className="p-4 md:p-5 space-y-4">
-                                        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
-                                                    <tr>
-                                                        <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                            Product name
-                                                        </th>
-                                                        <th scope="col" className="px-6 py-3">
-                                                            Taxes
-                                                        </th>
-                                                        <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                            Amount
-                                                        </th>
-                                                        <th scope="col" className="px-6 py-3">
-                                                            Price
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    {info.map((item) => {
-                                                        return (
-                                                            <tr className="border-b border-gray-200 dark:border-gray-700" key={uid()}>
-                                                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                                    {item.product_name}
-                                                                </th>
-                                                                <td className="px-6 py-4">
-                                                                    ${item.order_tax}
-                                                                </td>
-                                                                <td className="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-                                                                    {item.order_item_amount}
-                                                                </td>
-                                                                <td className="px-6 py-4">
-                                                                    ${item.orders_total}
-                                                                </td>
-                                                            </tr>
-                                                        )
-                                                    })}
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> </div> : <p></p>
-                } */}
                 {
                     <Modal dismissible show={details} onClose={() => setOpen(false)}>
                         <Modal.Header>Details</Modal.Header>
@@ -218,7 +154,7 @@ function Main() {
                                             ${item.total}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {item.user_code}
+                                            {auth.user.username}
                                         </td>
                                     </tr>)
                             })}

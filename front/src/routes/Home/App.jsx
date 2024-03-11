@@ -9,6 +9,7 @@ import {
   useMutation
 } from 'react-query'
 import { uid } from "uid";
+import { useAuth } from '../../contexts/AuthProvider.jsx'
 
 const queryClient = new QueryClient();
 const apiOrders = new OrderApi();
@@ -22,12 +23,16 @@ function App() {
   )
 }
 
+
 function Main() {
   const [cart, setCart] = useState([])
   const [finalInfo, setFinal] = useState({})
   const [products, setProducts] = useState([])
   const [selectedProduct, setSelected] = useState({})
   const { register, handleSubmit, reset } = useForm();
+  const auth = useAuth()
+
+
 
   const { isPending: isPendingProducts, error: errorProducts } = useQuery({
     queryKey: ['productsData'],
@@ -96,11 +101,12 @@ function Main() {
     setCart([])
     setFinal([])
 
-    console.log("finishing")
+    console.log(auth.user.code)
     let data = new FormData();
     data.append("tax", finalInfo.finalTax);
     data.append("total", finalInfo.finalPrice);
     data.append("code", uid(8).replace(/[a-zA-Z]/gm, ""));
+    data.append("user_code", auth.user.code)
 
     apiOrders.createOrder(data, cart)
     reset()
