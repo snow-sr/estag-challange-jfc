@@ -12,6 +12,21 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
+
+
+export const userState = atom({
+  key: 'userState',
+  default: '',
+});
+
+
 import './index.css'
 
 
@@ -40,6 +55,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </React.StrictMode>,
 )

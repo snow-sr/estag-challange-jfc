@@ -13,6 +13,7 @@
     "autoprefixer": "^10.4.18",
     "axios": "^1.6.7",
     "flowbite": "^2.3.0",
+    "flowbite-react": "^0.7.2",
     "i": "^0.3.7",
     "npm": "^10.5.0",
     "postcss": "^8.4.35",
@@ -22,6 +23,7 @@
     "react-query": "^3.39.3",
     "react-router": "^6.22.2",
     "react-router-dom": "^6.22.2",
+    "recoil": "^0.7.7",
     "tailwindcss": "^3.4.1",
     "uid": "^2.0.2"
   },

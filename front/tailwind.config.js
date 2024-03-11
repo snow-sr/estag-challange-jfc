@@ -6,6 +6,7 @@ export default {
     "./src/components/*.jsx",
     "./src/**/*.{jsx, js}",
     "./node_modules/flowbite/**/*.js",
+    "./node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
     extend: {},
